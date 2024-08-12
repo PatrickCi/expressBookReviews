@@ -32,7 +32,7 @@ public_users.get('/',function (req, res) {
 
    //Task 10: Get Book List as a Promise
    getAllBooks().then(
-    (bk)=>res.send(JSON.stringify(bk, null, 4)),
+    (myBooks)=>res.send(myBooks),
     (error) => res.send("denied")
   );  
 
@@ -49,7 +49,7 @@ public_users.get('/isbn/:isbn',function (req, res) {
   else
     res.send(books[isbn]);
   */
-
+  
   //Task 11: Use Promise to fetch book by ISBN
   getBookFromISBN(isbn).then(
     (myBook)=>res.send(myBook),
@@ -66,9 +66,8 @@ public_users.get('/author/:author',function (req, res) {
 
   if(author == "")
     return res.status(400).json({message: "There was no author provided."});
-  
-    var foundBooks = [];
-
+  /*
+  var foundBooks = [];
   for(const field in books)
     if(books[field].author.toLowerCase().includes(author.toLowerCase()))
         foundBooks.push(books[field])
@@ -77,15 +76,15 @@ public_users.get('/author/:author',function (req, res) {
         return res.send(foundBooks);
     else
         return res.status(404).json({message: "This author could not be found."});
-
-  /*
+    */
+  
   //Task 12: Do a fuzzy search for near match of author using async-await
     getBooksFromAuthor(author).then(
     (myBooks)=>res.send(myBooks),
     (error) => res.send("denied")
     
   );  
-    */
+    
   
 });
 
@@ -98,7 +97,7 @@ public_users.get('/title/:title',function (req, res) {
     return res.status(400).json({message: "There was no title provided."});
 
   var foundBooks = [];
-
+  /*
   for(const field in books)
     if(books[field].title.toLowerCase().includes(title.toLowerCase()))
         foundBooks.push(books[field]);        
@@ -107,15 +106,15 @@ public_users.get('/title/:title',function (req, res) {
     return res.send(foundBooks);
    else
     return res.status(404).json({message: "This book could not be found."});
-
+  */
   //Task 13 - Find books by title
-/*
+
   getBooksFromTitle(title).then(
     (myBooks)=>res.send(myBooks),
     (error) => res.send("denied")
     
   );
-*/
+
 });
 
 //  Get book review
